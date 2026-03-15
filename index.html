@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手作り味噌のすすめ｜自家製味噌づくり完全ガイド</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+        :root {
+            --color-bg: #faf6f0;
+            --color-cream: #f5eed9;
+            --color-brown: #8b6914;
+            --color-dark-brown: #5c4a1e;
+            --color-text: #3a3226;
+            --color-accent: #c9a84c;
+            --color-light: #fff8e7;
+            --color-miso: #d4a843;
+            --color-koji: #e8dcc8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.9;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(135deg, #5c4a1e 0%, #8b6914 40%, #c9a84c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=1920&q=80') center/cover;
+            opacity: 0.25;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.4);
+            letter-spacing: 0.15em;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-scroll {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.6);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-scroll:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #fff;
+        }
+
+        /* ========== NAV ========== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 246, 240, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 105, 20, 0.15);
+            padding: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--color-dark-brown);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--color-brown);
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* ========== SECTIONS ========== */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--color-light);
+        }
+
+        .section-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--color-dark-brown);
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 1rem auto 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-brown);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* ========== INTRO ========== */
+        .intro-text {
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        .intro-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* ========== INGREDIENTS ========== */
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .ingredients-photo img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .ingredient-list {
+            list-style: none;
+        }
+
+        .ingredient-list li {
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--color-koji);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ingredient-list li:last-child { border-bottom: none; }
+
+        .ingredient-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .ingredient-amount {
+            color: var(--color-brown);
+            font-size: 0.95rem;
+            background: var(--color-cream);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        .ingredient-note {
+            margin-top: 1.5rem;
+            background: var(--color-cream);
+            padding: 1.2rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        /* ========== STEPS ========== */
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 80px;
+            bottom: -3rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-accent), var(--color-cream));
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-brown), var(--color-accent));
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(139, 105, 20, 0.3);
+        }
+
+        .step-content h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.3rem;
+            color: var(--color-dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .step-image {
+            margin-top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .step-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* ========== TIPS ========== */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--color-accent);
+            transition: transform 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-card h3 {
+            font-family: 'Noto Serif JP', serif;
+            color: var(--color-dark-brown);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .tip-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ========== BENEFITS ========== */
+        .benefits-list {
+            max-width: 700px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .benefits-list li {
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        /* ========== GALLERY ========== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 0.8rem 1rem;
+            background: #fff;
+            font-size: 0.85rem;
+            color: var(--color-dark-brown);
+            text-align: center;
+        }
+
+        /* ========== HISTORY ========== */
+        .history-content {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .history-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, var(--color-cream), var(--color-light));
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.1rem;
+            color: var(--color-dark-brown);
+            text-align: center;
+        }
+
+        .quote-box::before {
+            content: '\201C';
+            font-size: 4rem;
+            color: var(--color-accent);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.5;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--color-dark-brown);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                grid-template-columns: 60px 1fr;
+                gap: 1rem;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+            }
+
+            .step:not(:last-child)::after {
+                left: 30px;
+                top: 60px;
+            }
+
+            nav a {
+                padding: 0.8rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            section { padding: 3rem 0; }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>手作り味噌のすすめ</h1>
+        <p>大豆と麹と塩。<br>三つの素材が織りなす、日本の伝統発酵食品を<br>自分の手でつくる喜び。</p>
+        <a href="#about" class="hero-scroll">味噌づくりを知る</a>
+    </div>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav>
+    <ul>
+        <li><a href="#about">味噌とは</a></li>
+        <li><a href="#ingredients">材料</a></li>
+        <li><a href="#steps">作り方</a></li>
+        <li><a href="#gallery">ギャラリー</a></li>
+        <li><a href="#tips">コツ・注意点</a></li>
+        <li><a href="#benefits">手作りの魅力</a></li>
+        <li><a href="#history">味噌の歴史</a></li>
+    </ul>
+</nav>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+    <div class="container">
+        <h2 class="section-title fade-in">味噌とは</h2>
+        <p class="section-subtitle fade-in">日本が世界に誇る発酵食品</p>
+        <div class="intro-text fade-in">
+            <p>味噌は、大豆を主原料に麹（米麹・麦麹・豆麹など）と塩を加えて発酵・熟成させた日本の伝統的な調味料です。奈良時代にはすでに文献に登場し、1300年以上にわたって日本の食卓を支えてきました。</p>
+            <p>味噌汁はもちろん、味噌漬け、味噌炒め、味噌田楽など、和食のあらゆる場面で活躍します。近年では、その優れた栄養価や発酵食品としての健康効果が世界的にも注目されています。</p>
+            <p>手作り味噌は、市販品にはない深い味わいと風味が特徴です。自分の手で仕込んだ味噌は、その家庭の常在菌によって世界に一つだけの味に仕上がります。「手前味噌」という言葉があるように、自家製味噌は昔から家庭の誇りでした。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== INGREDIENTS ===== -->
+<section id="ingredients">
+    <div class="container">
+        <h2 class="section-title fade-in">材料</h2>
+        <p class="section-subtitle fade-in">こだわりの素材で仕込む約10kgの味噌</p>
+        <div class="ingredients-grid fade-in">
+            <div class="ingredients-photo">
+                <img src="images/ingredients.jpg" alt="味噌づくりの材料 - 米麹、大豆、酒粕、塩">
+            </div>
+            <div>
+                <ul class="ingredient-list">
+                    <li>
+                        <span class="ingredient-name">大豆</span>
+                        <span class="ingredient-amount">1.3kg × 2袋</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-name">米麹（ORYZAE KOJI）</span>
+                        <span class="ingredient-amount">農薬不使用・乾燥 × 4袋</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-name">天然塩（海の精 あらしお）</span>
+                        <span class="ingredient-amount">海水100% × 4袋</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-name">酒粕（無農薬 純米）</span>
+                        <span class="ingredient-amount">福島県田村町産 × 2袋</span>
+                    </li>
+                </ul>
+                <div class="ingredient-note">
+                    <strong>素材のこだわり：</strong>ORYZAE KOJIの乾燥米麹は農薬不使用米を使用。塩は伊豆大島産「海の精」の天日と平釜の日本伝統海塩。酒粕は福島県仁井田本家の純米無農薬酒粕を使用しています。素材の質が味噌の味を大きく左右します。
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STEPS ===== -->
+<section id="steps">
+    <div class="container">
+        <h2 class="section-title fade-in">作り方</h2>
+        <p class="section-subtitle fade-in">丁寧に、ゆっくりと。味噌仕込みの全工程</p>
+        <div class="steps">
+
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>大豆を洗って浸水させる</h3>
+                    <p>大豆をよく洗い、たっぷりの水（大豆の3倍量）に一晩（18時間以上）浸します。大豆は水を吸って約2倍に膨らむので、大きめの容器を使いましょう。浸水が足りないと芯が残り、煮えムラの原因になります。</p>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>大豆を柔らかく煮る</h3>
+                    <p>浸水した大豆を大鍋に入れ、たっぷりの水で3〜5時間ほど煮ます。アクを丁寧に取りながら、親指と小指で簡単に潰れるくらいの柔らかさになるまで煮ましょう。圧力鍋を使えば20〜30分で煮上がります。煮汁（種水）は後で使うので取っておきます。</p>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>塩切り麹をつくる</h3>
+                    <p>大豆を煮ている間に、米麹と塩をまんべんなく混ぜ合わせます（塩切り麹）。麹の塊をほぐしながら、塩が均一に行き渡るように丁寧に混ぜましょう。この作業により麹の雑菌繁殖を防ぎます。</p>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>大豆を潰す</h3>
+                    <p>煮上がった大豆を熱いうちに潰します。ミンサー（挽肉機）を使うと効率的に均一に潰せます。手で潰す場合はビニール袋に入れて足で踏んだり、マッシャーやすりこぎを使います。粒が残る程度のお好みの粗さに仕上げましょう。</p>
+                    <div class="step-image">
+                        <img src="images/grinding.png" alt="ミンサーで大豆を潰す様子">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>材料を混ぜ合わせる</h3>
+                    <p>潰した大豆の粗熱が取れたら（人肌程度・40℃以下）、塩切り麹と合わせてよく混ぜます。硬さの目安は耳たぶくらい。硬い場合は取っておいた煮汁（種水）を少しずつ加えて調整します。今回は酒粕も加え、より深みのある味噌に仕上げます。</p>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>味噌玉を作って容器に詰める</h3>
+                    <p>混ぜ合わせた味噌をソフトボール大の団子（味噌玉）にまとめ、空気を抜きながら容器に投げ入れます。一段ごとに手で押さえて空気を抜き、表面を平らにならしましょう。空気が入るとカビの原因になります。</p>
+                    <div class="step-image">
+                        <img src="images/packing.jpg" alt="容器に詰めた味噌">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <h3>表面を整えて密封する</h3>
+                    <p>表面を平らにならし、縁のまわりに塩を振ります（カビ防止）。晒し布やガーゼを敷き、その上からラップでぴったりと覆い、空気を完全に遮断します。重石（味噌の重量の2〜3割）を乗せると、より均一に発酵が進みます。</p>
+                    <div class="step-image">
+                        <img src="images/wrapping.jpg" alt="ラップで密封した味噌">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step fade-in">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <h3>発酵・熟成させる</h3>
+                    <p>直射日光の当たらない涼しい場所（冷暗所）で保管します。仕込んでから約6ヶ月〜1年で食べ頃になります。梅雨明けの時期（7〜8月頃）に一度「天地返し」をすると、より均一に発酵が進みます。色が濃くなり、味噌らしい芳醇な香りがしてきたら完成です。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+    <div class="container">
+        <h2 class="section-title fade-in">ギャラリー</h2>
+        <p class="section-subtitle fade-in">味噌づくりの記録</p>
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item">
+                <img src="images/ingredients.jpg" alt="こだわりの材料たち">
+                <div class="gallery-caption">厳選した材料：ORYZAE KOJI、大豆、海の精、酒粕</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/grinding.png" alt="ミンサーで潰す">
+                <div class="gallery-caption">ミンサーで大豆を潰す — 湯気が立ちのぼる</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/packing.jpg" alt="容器に詰めた味噌">
+                <div class="gallery-caption">容器に詰めて表面を平らに整える</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/wrapping.jpg" alt="ラップで密封">
+                <div class="gallery-caption">晒し布とラップで丁寧に密封</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TIPS ===== -->
+<section id="tips">
+    <div class="container">
+        <h2 class="section-title fade-in">コツと注意点</h2>
+        <p class="section-subtitle fade-in">失敗しない味噌づくりのために</p>
+        <div class="tips-grid fade-in">
+            <div class="tip-card">
+                <div class="tip-icon">🧂</div>
+                <h3>塩分濃度を守る</h3>
+                <p>味噌の塩分は全体の10〜13%が目安です。塩が少ないと腐敗のリスクが高まり、多すぎるとしょっぱくなります。初めての方は12%前後がおすすめ。</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🫧</div>
+                <h3>空気を徹底的に抜く</h3>
+                <p>カビの最大の原因は空気です。容器に詰める際は味噌玉を叩きつけるように入れ、隙間なく押し込みましょう。表面のラップも密着させることが大切です。</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🧹</div>
+                <h3>道具の消毒を忘れずに</h3>
+                <p>容器、重石、押し蓋などはアルコール（焼酎や消毒用エタノール）で拭いて殺菌します。カビや雑菌の繁殖を防ぐ基本中の基本です。</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🌡️</div>
+                <h3>温度管理のポイント</h3>
+                <p>塩切り麹と大豆を混ぜるときは必ず40℃以下に冷ましてから。熱すぎると麹菌が死んでしまいます。保管場所は直射日光を避け、温度変化の少ない場所を選びましょう。</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🍶</div>
+                <h3>酒粕で深みをプラス</h3>
+                <p>酒粕を加えることで、味噌にまろやかさとコクが加わります。酒粕に含まれる酵母や酵素が発酵を助け、より複雑で奥深い風味に。無農薬の純米酒粕がおすすめです。</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🔄</div>
+                <h3>天地返しで均一な仕上がり</h3>
+                <p>仕込みから3〜4ヶ月後に「天地返し」を行います。上下を入れ替えることで発酵ムラを防ぎ、より均一な味わいに。カビがあればこの時に取り除きましょう。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section id="benefits">
+    <div class="container">
+        <h2 class="section-title fade-in">手作り味噌の魅力</h2>
+        <p class="section-subtitle fade-in">なぜ、わざわざ手作りするのか</p>
+        <ul class="benefits-list fade-in">
+            <li>
+                <span class="benefit-icon">✨</span>
+                <div>
+                    <strong>完全無添加で安心</strong><br>
+                    市販の味噌には保存料、アルコール、調味料（アミノ酸等）が添加されていることも。手作りなら大豆・麹・塩のみのシンプルな味噌が作れます。
+                </div>
+            </li>
+            <li>
+                <span class="benefit-icon">🏠</span>
+                <div>
+                    <strong>わが家だけの味</strong><br>
+                    同じ材料・同じレシピでも、仕込む環境に棲む常在菌によって味が変わります。まさに「手前味噌」— 自分の家でしか出せない唯一無二の味わいです。
+                </div>
+            </li>
+            <li>
+                <span class="benefit-icon">💰</span>
+                <div>
+                    <strong>コストパフォーマンス</strong><br>
+                    良質な材料を使っても、市販の高級味噌より安く大量に作れます。一度の仕込みで1年分以上の味噌が手に入ります。
+                </div>
+            </li>
+            <li>
+                <span class="benefit-icon">🦠</span>
+                <div>
+                    <strong>生きた発酵食品</strong><br>
+                    市販品は加熱殺菌されていることが多いですが、手作り味噌は生きた酵母や乳酸菌がそのまま。腸内環境の改善や免疫力アップが期待できます。
+                </div>
+            </li>
+            <li>
+                <span class="benefit-icon">🎓</span>
+                <div>
+                    <strong>食育と文化体験</strong><br>
+                    味噌づくりは日本の食文化そのもの。子どもと一緒に仕込めば、発酵の不思議や食べ物への感謝を学ぶ素晴らしい体験になります。
+                </div>
+            </li>
+            <li>
+                <span class="benefit-icon">⏳</span>
+                <div>
+                    <strong>育てる楽しさ</strong><br>
+                    仕込んでから半年〜1年、ゆっくりと発酵・熟成していく過程を見守る楽しさ。味見をしながら「もう少し…」と待つ時間も手作りならではの醍醐味です。
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ===== HISTORY ===== -->
+<section id="history">
+    <div class="container">
+        <h2 class="section-title fade-in">味噌の歴史</h2>
+        <p class="section-subtitle fade-in">千年以上受け継がれてきた発酵の知恵</p>
+        <div class="history-content fade-in">
+            <p>味噌の起源は、古代中国の「醤（ひしお）」にさかのぼります。日本に伝わったのは飛鳥時代（7世紀頃）とされ、奈良時代の文献「正倉院文書」（730年）には「未醤（みしょう）」という記録が残っています。これが「味噌」の語源とされています。当初は貴族や寺院など限られた人々の食品でしたが、鎌倉時代に武士の間で味噌汁が広まり、室町時代には庶民の食卓にも登場するようになりました。</p>
+
+            <div class="quote-box">
+                味噌は医者殺し — 日本の古いことわざ<br>
+                <small style="font-size: 0.8rem; color: #888;">毎日味噌汁を飲めば医者がいらなくなるほど健康でいられる、という意味</small>
+            </div>
+
+            <p>戦国時代には、味噌は兵糧として重要視されました。武田信玄や伊達政宗は味噌づくりを奨励し、各地で独自の味噌文化が花開きました。信州味噌、仙台味噌、八丁味噌、西京味噌など、地域ごとの風土や好みを反映した多彩な味噌が生まれ、今日まで受け継がれています。</p>
+
+            <p>江戸時代になると、味噌は完全に庶民の食品として定着し、「一汁一菜」の基本として味噌汁が日本人の毎日の食事に欠かせないものとなりました。各家庭で味噌を仕込む「手前味噌」の文化が広がり、それぞれの家庭の味が代々受け継がれていきました。現代において手作り味噌が再び注目されているのは、この豊かな伝統への回帰とも言えるでしょう。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>手作り味噌のすすめ｜2026年3月 仕込み</p>
+    <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 1rem;">このサイトはテスト運用・非公開です</p>
+</footer>
+
+<!-- ===== SCROLL ANIMATION ===== -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
